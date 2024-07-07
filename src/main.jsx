@@ -6,7 +6,7 @@ import MainLayout from './Components/MainLayout/MainLayout'
 import ErrorElement from './Components/ErrorElement/ErrorElement'
 import Home from './Components/Home/Home'
 import Favorites from './Components/Favorites/Favorites'
-import LogIn from './Components/LogIn/LogIn'
+import  { LoginCard } from './Components/LogIn/LogIn'
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/login',
-        element: <LogIn/>
+        element: <LoginCard/>
       },
     ]
   },
