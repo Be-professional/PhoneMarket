@@ -7,6 +7,7 @@ import ErrorElement from './Components/ErrorElement/ErrorElement'
 import Home from './Components/Home/Home'
 import Favorites from './Components/Favorites/Favorites'
 import  { LoginCard } from './Components/LogIn/LogIn'
+import PhoneDetails from './Components/PhoneDetails/PhoneDetails'
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,8 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/',
-        element: <Home/>
+        element: <Home/>,
+        loader: ()=>fetch('../phone.json')
       },
       {
         path:'/favorites',
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       {
         path:'/login',
         element: <LoginCard/>
+      },
+      {
+        path:'/phones/:id',
+        element:<PhoneDetails/>
       },
     ]
   },
