@@ -41,7 +41,9 @@ const Favorites = () => {
                        }
                     </div>
 
-                    <button onClick={()=>setIsShow(!isShow)} className="px-5 my-4 bg-green-400 flex mx-auto ">{isShow ? "See Less" : "See more"}</button>
+                    {
+                        favorites.length >2 && <button onClick={()=>setIsShow(!isShow)} className="px-5 my-4 bg-green-400 flex mx-auto ">{isShow ? "See Less" : "See more"}</button>
+                    }
                 </div>
             }
         </div>
