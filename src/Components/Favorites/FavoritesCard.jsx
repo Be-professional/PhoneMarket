@@ -6,44 +6,10 @@ import {
     Button,
 } from "@material-tailwind/react";
 import PropTypes from 'prop-types';
-import Swal from "sweetalert2";
-const PhoneDetailsCard = ({phone}) => {
-const {id,name,image,price,description}=phone;
-const handleAddToFavorite =()=>{
-    const addFavoriteItems= [];
-    const favoriteItems = JSON.parse(localStorage.getItem('favorite'));
-    if (!favoriteItems) {
-        addFavoriteItems.push(phone)
-        localStorage.setItem('favorite',JSON.stringify(addFavoriteItems))
-        console.log(addFavoriteItems)
-        Swal.fire({
-            title: "Good job!",
-            text: "You SuccessFully added your favorite item!",
-            icon: "success"
-          });
-    }
-    else{
-        const isExists= favoriteItems.some(phone=>phone.id===id)
-        if (!isExists) {
-            addFavoriteItems.push(...favoriteItems,phone)
-            localStorage.setItem('favorite',JSON.stringify(addFavoriteItems))
-            Swal.fire({
-                title: "Good job!",
-                text: "You Successfully added your favorite item!",
-                icon: "success"
-              });
-        }
-        else{
-            Swal.fire({
-                title: "Already Exist!",
-                text: "Dublicate item not allow!",
-                icon: "error"
-              });
-        }
-        
-       
-    }
-}
+// import Swal from "sweetalert2";
+const FavoritesCard = ({phone}) => {
+const {name,image,price,description}=phone;
+
 
     
     
@@ -73,10 +39,10 @@ const handleAddToFavorite =()=>{
                         <Typography color="gray" className="mb-8 font-normal">
                             {description}
                         </Typography>
-                        <div onClick={handleAddToFavorite}>
+                        <div>
                         <a href="#" className="inline-block">
                             <Button variant="text" className="flex items-center gap-2">
-                                Add to favorite
+                                Order
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -105,8 +71,8 @@ const handleAddToFavorite =()=>{
     );
 };
 
-PhoneDetailsCard.propTypes = {
+FavoritesCard.propTypes = {
     phone: PropTypes.array
 }
 
-export default PhoneDetailsCard;
+export default FavoritesCard;
