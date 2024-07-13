@@ -7,11 +7,15 @@ const Favorites = () => {
     const [favorites, setFavorites]=useState([]);
     const [noFound, setNoFound]=useState('')
     const [isShow , setIsShow]=useState(false)
+    const [totalPrice,  setTotalPrice] = useState(0)
 
     useEffect(()=>{
         const favoriteItems = JSON.parse(localStorage.getItem('favorite'));
         if (favoriteItems) {
             setFavorites(favoriteItems);
+            const total = favoriteItems.reduce((preValue,currentItem)=>preValue+currentItem.price ,0);
+            setTotalPrice(total)
+            
         }
         else{
             setNoFound("Don't have any item")
@@ -31,7 +35,13 @@ const Favorites = () => {
         <div>
             {
                 noFound ? <p className="text-center md:py-72">{noFound}</p> : <div> 
-                    {favorites.length > 0 && <button onClick={handleRemove} className="px-5 my-4 bg-red-400 flex mx-auto ">delete all favorites</button>}
+                    {favorites.length > 0 && 
+                    <div>
+                        <button onClick={handleRemove} className="px-5 my-4 bg-red-400 flex mx-auto ">delete all favorites</button>
+                        <h1>Total Price : {totalPrice} </h1>
+                   </div>
+                   
+                    }
                     <div className="grid grid-cols-2 gap-2">
                        {
                         isShow ? favorites.map(phone=><FavoritesCard key={phone.id} phone={phone}></FavoritesCard>) 
